@@ -9,9 +9,10 @@ pip install --upgrade bleak python-rtmidi mido pydirectinput pynput pyinstaller
 
 echo.
 echo Building the executable (this can take a minute or two)...
-pyinstaller --onefile --windowed --clean ^
+pyinstaller --onefile --windowed --clean --noupx ^
   --name "Shelementyevs-BLE-MIDI-Bridge" ^
   --icon "app_icon.ico" ^
+  --version-file "file_version_info.txt" ^
   --collect-all bleak ^
   --collect-all winrt ^
   --copy-metadata mido ^
