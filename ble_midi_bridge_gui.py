@@ -2404,7 +2404,7 @@ def main():
             pass
         try:
             import tkinter.messagebox as mb
-            mb.showerror("BLE-MIDI Bridge crashed", err)
+            mb.showerror("Shelementyev's BLE-MIDI Bridge crashed", err)
         except Exception:
             print(err)
 
