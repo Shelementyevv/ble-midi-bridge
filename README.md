@@ -1,6 +1,10 @@
-# Shelementyev's BLE-MIDI Bridge
+<p align="center">
+  <img src="app_icon.png" alt="Shelementyev's BLE-MIDI Bridge" width="120">
+</p>
 
-**A reliable Bluetooth and USB MIDI bridge for your digital piano — route it into Synthesia, DAWs, and MIDI files, and (uniquely) into Roblox piano games.**
+<h1 align="center">Shelementyev's BLE-MIDI Bridge</h1>
+
+<p align="center"><b>A reliable Bluetooth &amp; USB MIDI bridge for your digital piano — route it into Synthesia, DAWs, and MIDI files, and (uniquely) into Roblox piano games.</b></p>
 
 Shelementyev's BLE-MIDI Bridge connects your digital piano to your PC and sends what you play wherever you need it: into Synthesia and DAWs, to and from MIDI files, with a live visualizer and recording. And because it speaks Bluetooth, it does something no other tool does — it lets a **Bluetooth piano play in Roblox** piano games like Piano Rooms and Visual Pianos.
 
