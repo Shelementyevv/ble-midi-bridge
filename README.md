@@ -52,7 +52,7 @@ To build your own standalone `.exe`, run `build.bat` (it installs the build tool
 
 Windows Defender or another scanner may flag the `.exe` as suspicious, or block the download. **This is a false positive.** Apps packaged from Python with PyInstaller bundle a whole Python runtime into one executable, and that self-unpacking behavior looks like the software "packers" malware uses — so heuristic and machine-learning scanners flag it by pattern, not because anything is actually wrong.
 
-On [VirusTotal](https://www.virustotal.com/gui/file/caf465cfadac0cd5f6949d259012a3a911ef1cee76242f87933eed3159c341dc) only a handful of heuristic/ML engines flag it, while the major signature-based scanners — BitDefender, ESET, Avast, AVG, Avira, CrowdStrike, and others — all report it clean. The full source is in this repository and the build is reproducible with `build.bat`, so you can inspect or build it yourself.
+On [VirusTotal](https://www.virustotal.com/gui/file/a9a2f218587969014b885c10b88a4ac79ba7a624a70f3fc6c544c55925c2b25a?nocache=1) only a handful of heuristic/ML engines flag it, while the major signature-based scanners — BitDefender, ESET, Avast, AVG, Avira, CrowdStrike, and others — all report it clean. The full source is in this repository and the build is reproducible with `build.bat`, so you can inspect or build it yourself.
 
 - **If the download is blocked:** in your browser's downloads, choose *Keep* (Chrome/Edge), or download it again and allow it.
 - **If Defender quarantines it:** open **Windows Security -> Virus & threat protection -> Protection history**, select the item, and choose **Allow**.
