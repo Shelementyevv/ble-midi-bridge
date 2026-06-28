@@ -1,0 +1,7 @@
+<svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="150" height="150" rx="34" fill="#181d30"/>
+<rect x="16" y="86" width="15.5" height="52" rx="2" fill="#eef2fb"/><rect x="33" y="86" width="15.5" height="52" rx="2" fill="#eef2fb"/><rect x="50" y="86" width="15.5" height="52" rx="2" fill="#eef2fb"/><rect x="67" y="86" width="15.5" height="52" rx="2" fill="#eef2fb"/><rect x="84" y="86" width="15.5" height="52" rx="2" fill="#eef2fb"/><rect x="101" y="86" width="15.5" height="52" rx="2" fill="#eef2fb"/><rect x="118" y="86" width="15.5" height="52" rx="2" fill="#eef2fb"/>
+<rect x="28" y="86" width="10" height="33" rx="1" fill="#0a0d16"/><rect x="45" y="86" width="10" height="33" rx="1" fill="#0a0d16"/><rect x="79" y="86" width="10" height="33" rx="1" fill="#0a0d16"/><rect x="96" y="86" width="10" height="33" rx="1" fill="#0a0d16"/><rect x="113" y="86" width="10" height="33" rx="1" fill="#0a0d16"/>
+<circle cx="122" cy="24" r="21" fill="#5b8cff"/>
+<g transform="translate(111.2,13.2) scale(0.9)"><path fill="#ffffff" fill-rule="evenodd" d="M17.71 7.71L12 2h-1v7.59L6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 11 14.41V22h1l5.71-5.71-4.3-4.29 4.3-4.29zM13 5.83l1.88 1.88L13 9.59V5.83zm0 12.34v-3.76l1.88 1.88L13 18.17z"/></g>
+</svg>

@@ -11,6 +11,7 @@ echo.
 echo Building the executable (this can take a minute or two)...
 pyinstaller --onefile --windowed --clean ^
   --name "Shelementyevs-BLE-MIDI-Bridge" ^
+  --icon "app_icon.ico" ^
   --collect-all bleak ^
   --collect-all winrt ^
   --copy-metadata mido ^

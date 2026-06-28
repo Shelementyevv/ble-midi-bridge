@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# PyInstaller build output
+build/
+dist/
+*.spec
+
+# App settings (created at runtime in your home folder, not the repo)
+.ble_midi_bridge_gui.json
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.log

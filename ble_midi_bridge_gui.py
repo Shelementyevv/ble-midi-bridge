@@ -58,6 +58,9 @@ _NOTE_NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
 CONFIG_PATH = Path.home() / ".ble_midi_bridge_gui.json"
 APP_VERSION = "1.0"
 
+# Embedded app icon (128px PNG, base64) for the window/taskbar icon at runtime.
+ICON_PNG_B64 = "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"
+
 # The app can publish its own MIDI output port so other software (Synthesia, a
 # DAW) can receive the piano without installing loopMIDI. rtmidi supports this
 # on macOS (CoreMIDI) and Linux (ALSA), but NOT on Windows: WinMM has no API to
@@ -1391,11 +1394,66 @@ STATUS_COLORS = {
 # ---------------------------------------------------------------------------
 # Main application
 # ---------------------------------------------------------------------------
+class Tooltip:
+    """A small hover tooltip that explains a control."""
+
+    def __init__(self, widget, text, delay=450):
+        self.widget = widget
+        self.text = text
+        self.delay = delay
+        self._after = None
+        self._tip = None
+        widget.bind("<Enter>", self._schedule, add="+")
+        widget.bind("<Leave>", self._hide, add="+")
+        widget.bind("<ButtonPress>", self._hide, add="+")
+
+    def _schedule(self, _=None):
+        self._cancel()
+        self._after = self.widget.after(self.delay, self._show)
+
+    def _cancel(self):
+        if self._after is not None:
+            try:
+                self.widget.after_cancel(self._after)
+            except Exception:
+                pass
+            self._after = None
+
+    def _show(self):
+        if self._tip is not None or not self.text:
+            return
+        try:
+            x = self.widget.winfo_rootx() + 18
+            y = self.widget.winfo_rooty() + self.widget.winfo_height() + 6
+        except Exception:
+            return
+        self._tip = tw = tk.Toplevel(self.widget)
+        tw.wm_overrideredirect(True)
+        tw.wm_geometry(f"+{x}+{y}")
+        tk.Label(tw, text=self.text, justify="left", bg="#0c0d11",
+                 fg="#e7eaf2", relief="solid", bd=1, wraplength=330,
+                 padx=9, pady=7, font=("Segoe UI", 9)).pack()
+
+    def _hide(self, _=None):
+        self._cancel()
+        if self._tip is not None:
+            try:
+                self._tip.destroy()
+            except Exception:
+                pass
+            self._tip = None
+
+
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title(f"Shelementyev's BLE-MIDI Bridge {APP_VERSION}")
         self.configure(bg=BG)
+        try:
+            self._app_icon = tk.PhotoImage(data=ICON_PNG_B64)
+            self.iconphoto(True, self._app_icon)
+        except Exception:
+            pass
 
         self.q = queue.Queue()
         self.controller = BridgeController(self.q)
@@ -1489,6 +1547,10 @@ class App(tk.Tk):
         style.configure("Horizontal.TScale", background=PANEL)
 
     # -- layout -------------------------------------------------------------
+    def _tip(self, widget, text):
+        Tooltip(widget, text)
+        return widget
+
     def _build_ui(self):
         # Header
         header = ttk.Frame(self, style="Bg.TFrame")
@@ -1509,14 +1571,20 @@ class App(tk.Tk):
         conn.pack(fill="x", padx=16, pady=6)
         conn.columnconfigure(1, weight=1)
 
-        ttk.Label(conn, text="Source").grid(row=0, column=0, sticky="w", padx=(0, 10))
+        self._tip(ttk.Label(conn, text="Source"),
+                  "How your piano is connected: Bluetooth LE, or a wired USB/DIN "
+                  "MIDI input if one is available.").grid(
+                      row=0, column=0, sticky="w", padx=(0, 10))
         self.source_cb = ttk.Combobox(conn, state="readonly",
                                       values=["Bluetooth LE"])
         self.source_cb.current(0)
         self.source_cb.grid(row=0, column=1, sticky="ew")
         self.source_cb.bind("<<ComboboxSelected>>", self._on_source_change)
-        ttk.Button(conn, text="Refresh", command=self.refresh_ports).grid(
-            row=0, column=2, padx=(8, 0))
+        self._tip(self.source_cb, "How your piano is connected: Bluetooth LE, or a "
+                  "wired USB/DIN MIDI input.")
+        self._tip(ttk.Button(conn, text="Refresh", command=self.refresh_ports),
+                  "Re-scan for available MIDI ports and outputs.").grid(
+                      row=0, column=2, padx=(8, 0))
 
         self.piano_lbl = ttk.Label(conn, text="Piano (BLE)")
         self.piano_lbl.grid(row=1, column=0, sticky="w", padx=(0, 10), pady=(8, 0))
@@ -1524,11 +1592,20 @@ class App(tk.Tk):
         self.device_cb.grid(row=1, column=1, sticky="ew", pady=(8, 0))
         self.scan_btn = ttk.Button(conn, text="Scan", command=self.on_scan)
         self.scan_btn.grid(row=1, column=2, padx=(8, 0), pady=(8, 0))
+        self._tip(self.device_cb, "Pick your piano here. For Bluetooth, click Scan "
+                  "first then choose it from the list; for USB, choose the detected "
+                  "MIDI input.")
+        self._tip(self.scan_btn, "Search for nearby Bluetooth MIDI devices.")
 
-        ttk.Label(conn, text="Forward to").grid(row=2, column=0, sticky="w",
-                                                padx=(0, 10), pady=(8, 0))
+        self._tip(ttk.Label(conn, text="Forward to"),
+                  "Optional: send your live playing to another program (Synthesia, "
+                  "a DAW) through a virtual MIDI port. Not needed for Roblox.").grid(
+                      row=2, column=0, sticky="w", padx=(0, 10), pady=(8, 0))
         self.port_cb = ttk.Combobox(conn, state="readonly", values=[])
         self.port_cb.grid(row=2, column=1, sticky="ew", pady=(8, 0))
+        self._tip(self.port_cb, "The virtual MIDI port to forward to (the built-in "
+                  "port, LoopBe, or loopMIDI). Leave blank if you only play into "
+                  "Roblox.")
         ttk.Label(conn, text="(LoopBe / loopMIDI - optional)",
                   style="Muted.TLabel").grid(row=2, column=2, padx=(8, 0),
                                              pady=(8, 0), sticky="w")
@@ -1538,21 +1615,31 @@ class App(tk.Tk):
         self.connect_btn = ttk.Button(btns, text="Connect", style="Accent.TButton",
                                       command=self.on_connect)
         self.connect_btn.pack(side="left")
+        self._tip(self.connect_btn, "Connect to the selected piano and start "
+                  "bridging its MIDI.")
         self.disconnect_btn = ttk.Button(btns, text="Disconnect",
                                          command=self.on_disconnect, state="disabled")
         self.disconnect_btn.pack(side="left", padx=(8, 0))
         self.autoconn_var = tk.BooleanVar(value=False)
-        ttk.Checkbutton(btns, text="Auto-connect on launch",
-                        variable=self.autoconn_var).pack(side="right")
+        self._tip(ttk.Checkbutton(btns, text="Auto-connect on launch",
+                                  variable=self.autoconn_var),
+                  "Reconnect to your last piano automatically when the app "
+                  "opens.").pack(side="right")
         self.autorecon_var = tk.BooleanVar(value=True)
-        ttk.Checkbutton(btns, text="Auto-reconnect", variable=self.autorecon_var,
-                        command=self._sync_settings).pack(side="right", padx=(0, 14))
+        self._tip(ttk.Checkbutton(btns, text="Auto-reconnect",
+                                  variable=self.autorecon_var,
+                                  command=self._sync_settings),
+                  "If the connection drops, keep trying to reconnect on its "
+                  "own.").pack(side="right", padx=(0, 14))
 
         # Controls panel (transpose / velocity / panic)
         ctrl = ttk.Frame(self, padding=12)
         ctrl.pack(fill="x", padx=16, pady=6)
 
-        ttk.Label(ctrl, text="Transpose").pack(side="left")
+        self._tip(ttk.Label(ctrl, text="Transpose"),
+                  "Shift every note up or down in semitones (12 = one octave). "
+                  "Useful if a song sits too high or low for the game's "
+                  "range.").pack(side="left")
         ttk.Button(ctrl, text="-12", width=4,
                    command=lambda: self.bump_transpose(-12)).pack(side="left", padx=(8, 2))
         ttk.Button(ctrl, text="-1", width=3,
@@ -1569,39 +1656,57 @@ class App(tk.Tk):
         self.panic_btn = ttk.Button(ctrl, text="Panic  (All Notes Off)",
                                     style="Danger.TButton", command=self.on_panic)
         self.panic_btn.pack(side="right")
+        self._tip(self.panic_btn, "Instantly release every held note and the "
+                  "sustain pedal - clears anything stuck. Same as the F8 hotkey.")
 
         vel = ttk.Frame(self, padding=(12, 0, 12, 8))
         vel.pack(fill="x", padx=16)
-        ttk.Label(vel, text="Velocity").pack(side="left")
+        self._tip(ttk.Label(vel, text="Velocity"),
+                  "Scales how hard notes play. 100% = unchanged; higher = "
+                  "louder/harder, lower = softer.").pack(side="left")
         self.vel_var = tk.IntVar(value=100)
         self.vel_scale = ttk.Scale(vel, from_=25, to=200, variable=self.vel_var,
                                    command=self._on_vel, length=240)
         self.vel_scale.pack(side="left", padx=(8, 8))
+        self._tip(self.vel_scale, "Scales how hard notes play. 100% = unchanged.")
         self.vel_lbl = ttk.Label(vel, text="100%", width=6)
         self.vel_lbl.pack(side="left")
         self.clean_var = tk.BooleanVar(value=True)
-        ttk.Checkbutton(vel, text="Clean output (filter sensing/clock - recommended)",
-                        variable=self.clean_var,
-                        command=self._sync_settings).pack(side="right")
+        self._tip(ttk.Checkbutton(vel,
+                  text="Clean output (filter sensing/clock - recommended)",
+                  variable=self.clean_var, command=self._sync_settings),
+                  "Filters out 'active sensing' and timing-clock messages that some "
+                  "pianos send constantly, which can confuse other software. Leave "
+                  "on unless you have a reason not to.").pack(side="right")
 
         # Roblox keystroke output: Piano Rooms (MIDI mod) or Virtual Piano keys
         rbx = ttk.Frame(self, padding=(12, 0, 12, 6))
         rbx.pack(fill="x", padx=16)
         ttk.Label(rbx, text="Roblox").pack(side="left")
         self.roblox_var = tk.BooleanVar(value=False)
-        ttk.Checkbutton(rbx, text="Send to Roblox  (keep the game window focused)",
-                        variable=self.roblox_var,
-                        command=self._sync_settings).pack(side="left", padx=(8, 0))
-        ttk.Label(rbx, text="Type:", style="Muted.TLabel").pack(side="left", padx=(12, 4))
+        self._tip(ttk.Checkbutton(rbx,
+                  text="Send to Roblox  (keep the game window focused)",
+                  variable=self.roblox_var, command=self._sync_settings),
+                  "Turn keystroke output to Roblox on or off. The Roblox window must "
+                  "stay focused while you play.").pack(side="left", padx=(8, 0))
+        self._tip(ttk.Label(rbx, text="Type:", style="Muted.TLabel"),
+                  "Which kind of game you're sending to (see the dropdown).").pack(
+                      side="left", padx=(12, 4))
         self.roblox_mode_var = tk.StringVar(value=ROBLOX_MODES[0])
         self.roblox_mode_cb = ttk.Combobox(
             rbx, state="readonly", width=16, values=ROBLOX_MODES,
             textvariable=self.roblox_mode_var)
         self.roblox_mode_cb.pack(side="left")
         self.roblox_mode_cb.bind("<<ComboboxSelected>>", lambda _=None: self._sync_settings())
-        ttk.Button(rbx, text="Test", width=6,
-                   command=self.on_test_roblox).pack(side="left", padx=(8, 0))
-        ttk.Label(rbx, text="Stop hotkey: F8", style="Muted.TLabel").pack(side="right")
+        self._tip(self.roblox_mode_cb, "MidiConnect: for Piano Rooms / Visual Pianos "
+                  "- full velocity and sustain. QWERTY output: for the many "
+                  "letter-key piano games - sharps on Shift, sustain on Space.")
+        self._tip(ttk.Button(rbx, text="Test", width=6, command=self.on_test_roblox),
+                  "Plays a C-major scale into the game so you can confirm the keys "
+                  "are landing before you play.").pack(side="left", padx=(8, 0))
+        self._tip(ttk.Label(rbx, text="Stop hotkey: F8", style="Muted.TLabel"),
+                  "Press F8 at any time to release a stuck key or pedal without "
+                  "alt-tabbing out of the game.").pack(side="right")
 
         # Recording (capture what you play on the piano -> .mid)
         rec = ttk.Frame(self, padding=(12, 0, 12, 6))
@@ -1609,6 +1714,8 @@ class App(tk.Tk):
         ttk.Label(rec, text="Record").pack(side="left")
         self.record_btn = ttk.Button(rec, text="● Record", command=self.on_record)
         self.record_btn.pack(side="left", padx=(8, 0))
+        self._tip(self.record_btn, "Record what you play on the piano to a .mid file "
+                  "you can save and reuse.")
         self.record_lbl = ttk.Label(rec, text="idle", style="Muted.TLabel")
         self.record_lbl.pack(side="left", padx=(10, 0))
 
@@ -1616,12 +1723,15 @@ class App(tk.Tk):
         play = ttk.Frame(self, padding=12)
         play.pack(fill="x", padx=16, pady=6)
         play.columnconfigure(1, weight=1)
-        ttk.Label(play, text="Play to piano").grid(row=0, column=0, sticky="w",
-                                                    padx=(0, 10))
+        self._tip(ttk.Label(play, text="Play to piano"),
+                  "Load a .mid file and play it back out to your piano (and "
+                  "optionally to Roblox or other software).").grid(
+                      row=0, column=0, sticky="w", padx=(0, 10))
         self.file_lbl = ttk.Label(play, text="No file loaded", style="Muted.TLabel")
         self.file_lbl.grid(row=0, column=1, sticky="w")
-        ttk.Button(play, text="Load MIDI...", command=self.on_load_midi).grid(
-            row=0, column=2, padx=(8, 0))
+        self._tip(ttk.Button(play, text="Load MIDI...", command=self.on_load_midi),
+                  "Open a .mid file to play back.").grid(
+                      row=0, column=2, padx=(8, 0))
 
         row2 = ttk.Frame(play)
         row2.grid(row=1, column=0, columnspan=3, sticky="ew", pady=(10, 0))
@@ -1635,23 +1745,34 @@ class App(tk.Tk):
                                    state="disabled")
         self.stop_btn.pack(side="left", padx=(8, 0))
         self.loop_var = tk.BooleanVar(value=False)
-        ttk.Checkbutton(row2, text="Loop", variable=self.loop_var,
-                        command=self._sync_settings).pack(side="left", padx=(14, 0))
+        self._tip(ttk.Checkbutton(row2, text="Loop", variable=self.loop_var,
+                                  command=self._sync_settings),
+                  "Repeat the file from the start when it reaches the end.").pack(
+                      side="left", padx=(14, 0))
 
-        ttk.Label(row2, text="Speed").pack(side="left", padx=(16, 4))
+        self._tip(ttk.Label(row2, text="Speed"),
+                  "Play the file faster or slower without changing pitch. "
+                  "100% = the file's original tempo.").pack(side="left", padx=(16, 4))
         self.tempo_var = tk.IntVar(value=100)
-        ttk.Scale(row2, from_=50, to=200, variable=self.tempo_var,
-                  command=self._on_tempo, length=140).pack(side="left")
+        self._tip(ttk.Scale(row2, from_=50, to=200, variable=self.tempo_var,
+                            command=self._on_tempo, length=140),
+                  "Playback speed. 100% = original tempo.").pack(side="left")
         self.tempo_lbl = ttk.Label(row2, text="100%", width=5)
         self.tempo_lbl.pack(side="left", padx=(4, 0))
 
         self.ch1_var = tk.BooleanVar(value=True)
-        ttk.Checkbutton(row2, text="Send on ch.1", variable=self.ch1_var,
-                        command=self._sync_settings).pack(side="right")
+        self._tip(ttk.Checkbutton(row2, text="Send on ch.1", variable=self.ch1_var,
+                                  command=self._sync_settings),
+                  "Force playback onto MIDI channel 1. Many pianos only respond on "
+                  "channel 1, so if file playback seems silent, leave this on.").pack(
+                      side="right")
         self.play_out_var = tk.BooleanVar(value=True)
-        ttk.Checkbutton(row2, text="To output (Synthesia)",
-                        variable=self.play_out_var,
-                        command=self._sync_settings).pack(side="right", padx=(0, 12))
+        self._tip(ttk.Checkbutton(row2, text="To output (Synthesia)",
+                                  variable=self.play_out_var,
+                                  command=self._sync_settings),
+                  "Also send the file's notes to the virtual MIDI port (for "
+                  "Synthesia, a DAW, etc.), not just to the piano.").pack(
+                      side="right", padx=(0, 12))
 
         prow = ttk.Frame(play)
         prow.grid(row=2, column=0, columnspan=3, sticky="ew", pady=(10, 0))
@@ -1667,30 +1788,45 @@ class App(tk.Tk):
         vrow = ttk.Frame(play)
         vrow.grid(row=3, column=0, columnspan=3, sticky="ew", pady=(10, 0))
         self.voice_on_var = tk.BooleanVar(value=False)
-        ttk.Checkbutton(vrow, text="Set piano voice  #",
-                        variable=self.voice_on_var,
-                        command=self._on_voice).pack(side="left")
+        self._tip(ttk.Checkbutton(vrow, text="Set piano voice  #",
+                                  variable=self.voice_on_var, command=self._on_voice),
+                  "Send a Program Change to switch the piano's sound (voice). Use the "
+                  "number box and Test voice to find the one you want.").pack(side="left")
         self.voice_num = tk.IntVar(value=0)
-        ttk.Spinbox(vrow, from_=0, to=15, width=4, textvariable=self.voice_num,
-                    command=self._on_voice).pack(side="left", padx=(4, 8))
-        ttk.Button(vrow, text="Test voice", command=self.on_test_voice).pack(side="left")
-        ttk.Label(vrow, text="BLE interval", style="Muted.TLabel").pack(side="left",
-                                                                       padx=(16, 2))
+        self._tip(ttk.Spinbox(vrow, from_=0, to=15, width=4,
+                              textvariable=self.voice_num, command=self._on_voice),
+                  "Voice / program number sent to the piano (0-15).").pack(
+                      side="left", padx=(4, 8))
+        self._tip(ttk.Button(vrow, text="Test voice", command=self.on_test_voice),
+                  "Play a short note so you can hear the currently selected "
+                  "voice.").pack(side="left")
+        self._tip(ttk.Label(vrow, text="BLE interval", style="Muted.TLabel"),
+                  "Smallest gap (in ms) between Bluetooth messages sent to the piano. "
+                  "Bluetooth can't send faster than this - raise it if a Bluetooth "
+                  "piano stutters or drops notes, lower it for tighter timing. "
+                  "Ignored over USB.").pack(side="left", padx=(16, 2))
         self.gap_var = tk.IntVar(value=15)
-        ttk.Spinbox(vrow, from_=5, to=30, width=4, textvariable=self.gap_var,
-                    command=self._sync_settings).pack(side="left")
+        self._tip(ttk.Spinbox(vrow, from_=5, to=30, width=4, textvariable=self.gap_var,
+                              command=self._sync_settings),
+                  "Minimum spacing in ms between Bluetooth messages (raise if notes "
+                  "drop, lower for tighter timing).").pack(side="left")
         ttk.Label(vrow, text="ms", style="Muted.TLabel").pack(side="left", padx=(2, 0))
-        ttk.Label(vrow, text="Buffer", style="Muted.TLabel").pack(side="left",
-                                                                  padx=(14, 2))
+        self._tip(ttk.Label(vrow, text="Buffer", style="Muted.TLabel"),
+                  "How far ahead (in ms) playback is scheduled. A bigger buffer "
+                  "smooths out dense passages but adds a little latency; a smaller "
+                  "one feels more immediate.").pack(side="left", padx=(14, 2))
         self.buffer_var = tk.IntVar(value=30)
-        ttk.Spinbox(vrow, from_=20, to=400, increment=10, width=5,
-                    textvariable=self.buffer_var,
-                    command=self._sync_settings).pack(side="left")
+        self._tip(ttk.Spinbox(vrow, from_=20, to=400, increment=10, width=5,
+                              textvariable=self.buffer_var, command=self._sync_settings),
+                  "Look-ahead scheduling window in ms (bigger = smoother dense songs "
+                  "but more latency).").pack(side="left")
         ttk.Label(vrow, text="ms", style="Muted.TLabel").pack(side="left", padx=(2, 12))
         self.pack_var = tk.BooleanVar(value=True)
-        ttk.Checkbutton(vrow, text="Pack notes (faster, for dense songs)",
-                        variable=self.pack_var,
-                        command=self._sync_settings).pack(side="left")
+        self._tip(ttk.Checkbutton(vrow, text="Pack notes (faster, for dense songs)",
+                                  variable=self.pack_var, command=self._sync_settings),
+                  "Combines notes that happen at the same time into fewer Bluetooth "
+                  "packets - faster for dense songs. Turn off if a piano mis-handles "
+                  "packed messages.").pack(side="left")
 
         # Visualizer
         viz = ttk.Frame(self, padding=12)
@@ -2158,6 +2294,8 @@ class App(tk.Tk):
              "live visualizer and recording. And because it works over Bluetooth, "
              "it does something no other tool does: it lets a Bluetooth piano play "
              "in Roblox piano games like Piano Rooms and Visual Pianos.")
+        line("Tip: hover your mouse over any control in the app to see a short "
+             "explanation of what it does.", "b")
 
         head("Quick start (the short version)")
         line("1) Connect your piano (Bluetooth or USB) at the top.", "b")
