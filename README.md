@@ -15,7 +15,9 @@ Shelementyev's BLE-MIDI Bridge connects your digital piano to your PC and sends 
 ---
 
 ## Features
-- **Practice tools:** a Synthesia-style **falling-notes** view, a **track / hand filter** (mute the left or right hand of a piano MIDI), and a **wait-for-my-notes** mode that pauses at every chord until you play it on your piano, and **sheet music both ways** - transcribe any loaded MIDI to printable notation (key, triplets, dynamics, pedal), or open a MusicXML score and play it as MIDI.
+- **Practice tools** — a Synthesia-style **falling-notes** view (color-coded per hand), a **wait-for-my-notes** mode that pauses at every chord until you play it on your piano (waiting keys light amber and are labeled with the exact note names), a **track / hand filter** for one-hand practice, and a **middle-C marker** on the keyboard.
+- **Sheet music out** — the **Sheet music...** button transcribes any loaded file into real notation: a `.musicxml` (opens in the free MuseScore) plus a printable browser preview. It detects keys (including mid-piece changes), triplets and sextuplets, dynamics, and phrase slurs, and writes proper stems, beams, ties, pedal lines, tempo and rehearsal marks, and glissando lines, with held notes kept as a second voice on a grand staff.
+- **Sheet music in** — **Load MIDI / Sheet...** also opens MusicXML scores (`.musicxml` / `.mxl`). Two-staff piano scores split into hands, the score's full tempo map is honored, and you can save a `.mid` copy — any sheet becomes playable on your piano or in Roblox.
 
 - **Bluetooth LE pianos** — connect a BLE digital piano directly, no virtual cables or workarounds.
 - **USB pianos** — a rock-solid wired option that handles even very fast pieces flawlessly.
@@ -27,6 +29,20 @@ Shelementyev's BLE-MIDI Bridge connects your digital piano to your PC and sends 
 - **Live 88-key visualizer** and one-click **recording** to a `.mid` file.
 - **F8 panic hotkey** — instantly release a stuck key or pedal without alt-tabbing out of the game.
 - **Test button** — fires a C-major scale into the game so you can confirm your setup before you play.
+
+<p align="center">
+  <img src="practice-wait.png" alt="Wait-for-my-notes practice mode" width="820"><br>
+  <i>Wait-for-my-notes: playback freezes until you play the labeled amber keys.</i>
+</p>
+
+<p align="center">
+  <img src="sheet-example.png" alt="Sheet music exported by the app" width="820"><br>
+  <i>Notation exported by the app from a MIDI file (demo piece).</i>
+</p>
+
+### A note on sheet-music accuracy
+
+The MIDI &harr; sheet conversion is automated engraving, so set your expectations accordingly: treat the output as a **good working draft, not publication-quality typesetting**. Cleanly sequenced MIDIs — the kind piano communities usually share — come out very readable; free-time live recordings quantize roughly. Complex scores are approximated: at most two voices per staff, quintuplet/septuplet runs snap to the nearest supported grid, spelling follows one key per key-signature region, and editorial detail like fingerings or expression text simply isn't present in MIDI data. Importing MusicXML works best with standard two-staff piano scores. For a polished final copy, open the exported `.musicxml` in the free [MuseScore](https://musescore.org) and tidy it there — the notes, rhythms, and structure will already be in place.
 
 ## Requirements
 
