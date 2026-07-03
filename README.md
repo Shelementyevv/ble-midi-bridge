@@ -15,6 +15,7 @@ Shelementyev's BLE-MIDI Bridge connects your digital piano to your PC and sends 
 ---
 
 ## Features
+- **Practice tools:** a Synthesia-style **falling-notes** view, a **track / hand filter** (mute the left or right hand of a piano MIDI), and a **wait-for-my-notes** mode that pauses at every chord until you play it on your piano, and **sheet music both ways** - transcribe any loaded MIDI to printable notation (key, triplets, dynamics, pedal), or open a MusicXML score and play it as MIDI.
 
 - **Bluetooth LE pianos** — connect a BLE digital piano directly, no virtual cables or workarounds.
 - **USB pianos** — a rock-solid wired option that handles even very fast pieces flawlessly.
@@ -52,7 +53,7 @@ To build your own standalone `.exe`, run `build.bat` (it installs the build tool
 
 Windows Defender or another scanner may flag the `.exe` as suspicious, or block the download. **This is a false positive.** Apps packaged from Python with PyInstaller bundle a whole Python runtime into one executable, and that self-unpacking behavior looks like the software "packers" malware uses — so heuristic and machine-learning scanners flag it by pattern, not because anything is actually wrong.
 
-On [VirusTotal](https://www.virustotal.com/gui/file/a9a2f218587969014b885c10b88a4ac79ba7a624a70f3fc6c544c55925c2b25a?nocache=1) only a handful of heuristic/ML engines flag it, while the major signature-based scanners — BitDefender, ESET, Avast, AVG, Avira, CrowdStrike, and others — all report it clean. The full source is in this repository and the build is reproducible with `build.bat`, so you can inspect or build it yourself.
+On [VirusTotal](https://www.virustotal.com/gui/file/c444839534cf86b831623f7ba0b08ee68fdc3d9253571bfad54c54ebd2df0f2e) only a handful of heuristic/ML engines flag it, while the major signature-based scanners — BitDefender, ESET, Avast, AVG, Avira, CrowdStrike, and others — all report it clean. The full source is in this repository and the build is reproducible with `build.bat`, so you can inspect or build it yourself.
 
 - **If the download is blocked:** in your browser's downloads, choose *Keep* (Chrome/Edge), or download it again and allow it.
 - **If Defender quarantines it:** open **Windows Security -> Virus & threat protection -> Protection history**, select the item, and choose **Allow**.

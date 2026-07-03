@@ -4,8 +4,8 @@
 # version, and publisher (helps it look legitimate to scanners + SmartScreen).
 VSVersionInfo(
   ffi=FixedFileInfo(
-    filevers=(1, 0, 0, 0),
-    prodvers=(1, 0, 0, 0),
+    filevers=(1, 1, 0, 0),
+    prodvers=(1, 1, 0, 0),
     mask=0x3f,
     flags=0x0,
     OS=0x40004,
@@ -19,12 +19,12 @@ VSVersionInfo(
         '040904B0',
         [StringStruct('CompanyName', 'Shelementyev'),
          StringStruct('FileDescription', "Shelementyev's BLE-MIDI Bridge"),
-         StringStruct('FileVersion', '1.0.0.0'),
+         StringStruct('FileVersion', '1.1.0.0'),
          StringStruct('InternalName', 'Shelementyevs-BLE-MIDI-Bridge'),
          StringStruct('LegalCopyright', "Copyright (C) 2026 Shelementyev - GPLv3"),
          StringStruct('OriginalFilename', 'Shelementyevs-BLE-MIDI-Bridge.exe'),
          StringStruct('ProductName', "Shelementyev's BLE-MIDI Bridge"),
-         StringStruct('ProductVersion', '1.0.0.0')])
+         StringStruct('ProductVersion', '1.1.0.0')])
     ]),
     VarFileInfo([VarStruct('Translation', [1033, 1200])])
   ]
