@@ -288,7 +288,7 @@ class RobloxKeySender:
     Sends MIDI notes/sustain into a Roblox piano on a private worker thread.
     Two output modes:
       - "midiconnect": Piano Rooms numpad protocol (note + velocity + sustain).
-      - "keyboard":    Virtual Piano style, where each note taps a letter/number
+      - "keyboard":    Virtual Piano style, where each note holds a letter/number
                        key (Shift for sharps) and the sustain pedal holds Space.
     pydirectinput is imported lazily (Windows-only) the first time it's needed.
     """
@@ -306,6 +306,7 @@ class RobloxKeySender:
         self._last_sustain = None
         self._held = set()            # notes held down (midiconnect release tracking)
         self._space_down = False      # keyboard-mode sustain state
+        self._kbd_held = {}           # (channel, MIDI note) -> (key, sharp)
         self._thread = threading.Thread(target=self._run, daemon=True)
         self._thread.start()
 
@@ -328,7 +329,7 @@ class RobloxKeySender:
         """Refocus Roblox and lift everything this sender currently holds."""
         if self._failed:
             return
-        self._q.put(("release_all",))
+        self._q.put(("release_all", self.mode))
 
     def focus(self):
         self._q.put(("focus",))
@@ -386,17 +387,33 @@ class RobloxKeySender:
                 pass
 
     # --- keyboard (Virtual Piano) helpers ---
-    def _key_tap(self, key, shift):
-        pdi = self._pdi
+    def _key_hold(self, key, shift, down):
+        # Shift selects a sharp at the key event; release Shift immediately so
+        # a held black key does not turn subsequent white keys into sharps.
         try:
             if shift:
-                pdi.keyDown("shiftleft")
-                pdi.press(key)
-                pdi.keyUp("shiftleft")
+                self._pdi.keyDown("shiftleft")
+            if down:
+                self._pdi.keyDown(key)
             else:
-                pdi.press(key)
-        except Exception:
-            pass
+                self._pdi.keyUp(key)
+            return True
+        except Exception as e:
+            self._log(f"QWERTY key event failed: {e}")
+            return False
+        finally:
+            if shift:
+                try:
+                    self._pdi.keyUp("shiftleft")
+                except Exception:
+                    pass
+
+    def _release_keyboard_notes(self):
+        keys = dict(self._kbd_held.values())
+        for key, shift in keys.items():
+            if self._key_hold(key, shift, False):
+                self._kbd_held = {note: km for note, km in self._kbd_held.items()
+                                  if km[0] != key}
 
     def _set_space(self, down):
         try:
@@ -411,6 +428,7 @@ class RobloxKeySender:
 
     def _kbd_message(self, msg):
         high = msg[0] & 0xF0
+        identity = (msg[0] & 0x0F, msg[1]) if len(msg) >= 2 else None
         if high == 0x90 and len(msg) >= 3 and msg[2] > 0:
             note = msg[1]
             # fold notes outside the layout's range in by octaves, so every key
@@ -421,10 +439,21 @@ class RobloxKeySender:
                 note -= 12
             km = self.kbd_map.get(note)
             if km:
-                self._key_tap(km[0], km[1])
+                # A repeated note-on is a new strike, but octave-folded notes
+                # sharing a PC key must not release each other prematurely.
+                if identity in self._kbd_held:
+                    old = self._kbd_held.pop(identity)
+                    if not any(v[0] == old[0] for v in self._kbd_held.values()):
+                        self._key_hold(old[0], old[1], False)
+                if self._key_hold(km[0], km[1], True):
+                    self._kbd_held[identity] = km
+        elif high in (0x80, 0x90) and len(msg) >= 3:
+            km = self._kbd_held.pop(identity, None)
+            if km and not any(v[0] == km[0] for v in self._kbd_held.values()):
+                if not self._key_hold(km[0], km[1], False):
+                    self._kbd_held[identity] = km  # allow panic to retry
         elif high == 0xB0 and len(msg) >= 3 and msg[1] == 64:
             self._set_space(msg[2] >= 64)
-        # note-offs are ignored: Virtual Piano notes are triggered on key-down
 
     def _run(self):
         while True:
@@ -438,15 +467,15 @@ class RobloxKeySender:
                     self._focus_roblox()
                 elif item[0] == "release_all":
                     self._focus_roblox()
-                    if self.mode == "keyboard":
-                        self._set_space(False)
-                        try:
-                            self._pdi.keyUp("shiftleft")
-                        except Exception:
-                            pass
-                    else:
-                        for note in sorted(self._held):
-                            self._press_keys(bytes([0x80, note, 0]))
+                    self._release_keyboard_notes()
+                    self._set_space(False)
+                    try:
+                        self._pdi.keyUp("shiftleft")
+                    except Exception:
+                        pass
+                    for note in sorted(self._held):
+                        self._press_keys(bytes([0x80, note, 0]))
+                    if item[1] == "midiconnect" or self._held:
                         self._press_keys(bytes([0xB0, 64, 0]))  # sustain off
                     self._held.clear()
                     self._last_sustain = None
@@ -3954,7 +3983,13 @@ class App(tk.Tk):
         self.controller.remap_ch1 = self.ch1_var.get()
         self.controller.clean_output = self.clean_var.get()
         self.controller.play_to_output = self.play_out_var.get()
-        self.controller.roblox.enabled = self.roblox_var.get()
+        next_enabled = self.roblox_var.get()
+        next_mode = ("keyboard" if self.roblox_mode_var.get() == ROBLOX_MODES[1]
+                     else "midiconnect")
+        if self.controller.roblox.enabled and (
+                not next_enabled or self.controller.roblox.mode != next_mode):
+            self.controller.roblox.release_all()
+        self.controller.roblox.enabled = next_enabled
         if self.roblox_mode_var.get() == ROBLOX_MODES[1]:
             self.controller.roblox.mode = "keyboard"
             if not self.controller.roblox.kbd_map:
@@ -4119,8 +4154,8 @@ class App(tk.Tk):
         line("For the many games that you'd normally play by typing letters on the "
              "keyboard (the 'Virtual Piano' style used by virtualpiano.net sheets "
              "and lots of Roblox pianos). Set Type = QWERTY output, tick 'Send to "
-             "Roblox', focus the game, and play. Each note taps a letter or number "
-             "key, sharps (black keys) are sent while holding Shift, and the "
+             "Roblox', focus the game, and play. Each note holds a letter or number "
+             "key until you release the piano key; sharps use Shift, and the "
              "sustain pedal holds the Space bar. The standard range is C2-C7; notes "
              "above or below it fold in by octaves so every key on your piano still "
              "plays something, and Transpose shifts a whole piece up or down. Note "

@@ -23,7 +23,7 @@ Shelementyev's BLE-MIDI Bridge connects your digital piano to your PC and sends 
 - **USB pianos** — a rock-solid wired option that handles even very fast pieces flawlessly.
 - **Two ways into Roblox:**
   - **MidiConnect** — drives the *Piano Rooms* and *Visual Pianos* games with full velocity and sustain, using the MidiConnect protocol (see Credits).
-  - **QWERTY output** — plays the many letter-key piano games (the "Virtual Piano" style): sharps on Shift, sustain on Space, with out-of-range notes folded in by octaves so every key plays.
+  - **QWERTY output** — plays the many letter-key piano games (the "Virtual Piano" style): keys held until you release the piano key, sharps on Shift, sustain on Space, with out-of-range notes folded in by octaves so every key plays.
 - **MIDI file playback** — load a `.mid` and send it to your piano and/or straight into a game, with tempo, loop, and transpose.
 - **Send to other software** — pass your piano through to Synthesia or a DAW with a built-in virtual MIDI port (macOS/Linux) or loopMIDI (Windows).
 - **Live 88-key visualizer** and one-click **recording** to a `.mid` file.
@@ -64,6 +64,9 @@ python ble_midi_bridge_gui.py
 ```
 
 To build your own standalone `.exe`, run `build.bat` (it installs the build tools and produces `dist/Shelementyevs-BLE-MIDI-Bridge.exe`).
+
+Run the keyboard-output regression tests with `python -m unittest discover -s tests -v`.
+These tests use mocked key events and do not require a connected piano or Roblox.
 
 ## A note on antivirus warnings
 
